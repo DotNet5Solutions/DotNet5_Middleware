@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DotNet5_Middleware.Middleware;
 
 namespace DotNet5_Middleware
 {
@@ -39,11 +40,20 @@ namespace DotNet5_Middleware
             app.UseRouting();
 
             app.UseAuthorization();
+            //app.UseWelcomePage();
+            //app.Run(async (context) =>
+            //{
+            //    await context.Response.Body.WriteAsync("Hello World!");
+            //});
+
+            app.UseMiddleware<MyMiddleware>();
 
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
             });
+
+
         }
     }
 }
